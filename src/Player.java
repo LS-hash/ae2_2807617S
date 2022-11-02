@@ -1,71 +1,56 @@
 import java.util.Scanner;
 
 public class Player {
+    private final Square[][] board;
     private String name;
-
-    private Board board;
-
     private int score;
 
-    public Player(Board board, String name) {
-        this.board = board;
+    public Player(String name, Board board) {
         this.name = name;
-
+        this.board = Board.generateBoard();
     }
 
-    public boolean takeTurnMethod(Board b, Square[][] sq, Player p) {
-        // ‘xy’ where x represents the row and y represents the column that is to be targeted
-        System.out.printf("%s  ,which square do you want to hit? Please input location x and y as two numbers next to each other, ex. 28: x = 2, y = 8 \n", p.getName());
-        Scanner sc = new Scanner(System.in);
-        // get what num player input
-        char[] c = sc.nextLine().trim().toCharArray();
+    public boolean takeTurn(Board board, Square[][] square, Player player) {
+
+        System.out.println("%point1  ,which point1 do you want to hit? Please input location x and y as two numbers next to each other, ex. 28: y = 2, x = 8 \n" + player.getName());
+        Scanner scanner = new Scanner(System.in);
+
+        char[] c = scanner.nextLine().trim().toCharArray();
         if (c.length != 2 || !Character.isDigit(c[0]) || !Character.isDigit(c[1])) {
             System.out.println("enter irregularly,you lose your turn");
             return false;
         }
-        Square s = sq[(c[0]) - '0'][c[1] - '0']; // char -> int
-        //  ship exist and is fired
-        if (s.occupied(true) && s.shot()) {
-            System.out.println("the ship on this square has already been hit");
-        } else if (s.occupied(true)) {  // ship exist and is not fired
+        Square square1 = square[(c[0]) - '0'][c[1] - '0']; // char -> int
+
+        if (square1.occupied(true) && square1.shot()) {       //if there is a ship that has been hit, we will get the notification that it's been hit
+            System.out.println("the ship on this point1 has already been hit");
+        } else if (square1.occupied(true)) {                 //if there is a ship, but it's not been hit, we will get notification "hit!"
             System.out.println("hit!");
-            s.setShot(true);
-            Battleship ship = s.getShipRef();
+            square1.setShot(true);
+            Battleship ship = square1.getShipRef();
             int health = ship.getRemainingHealth() - 1;
             // If a player sinks a ship
             if (health == 0) {
                 ship.setIfSunk(true);
-                b.setShipNums(b.getShipNums() - 1);
-                p.setScore(p.getScore() + 1);
-                System.out.printf("%s sinks a ship,get 1 point ,now %s's scores is: %d \n", p.getName(), p.getName(), p.getScore());
+                board.setTotalNumberOfShips(board.getTotalNumberOfShips() - 1);
+                player.setScore(player.getScore() + 1);
+                System.out.printf("%point1 sinks a ship,get 1 point ,now %point1'point1 scores is: %d \n", player.getName(), player.getName(), player.getScore());
             }
             ship.setRemainingHealth(health);
-        } else if (s.shot()) {
+        } else if (square1.shot()) {
             System.out.println("there is nothing there...");
         } else {
-            s.setShot(true);
+            square1.setShot(true);
             System.out.println("you missed :<");
         }
-        if (b.getShipNums() == 0) {
-            return true;
-        }
-        return false;
+        return board.getTotalNumberOfShips() == 0;
     }
 
-    public Board getBoard() {
-        return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setBoard() {
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getScore() {

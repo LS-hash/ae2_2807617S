@@ -1,13 +1,13 @@
 public class Square {
-    private int row;
-    private int column;
+    private int rows;
+    private int columns;
     private boolean occupied;
     private Battleship shipRef;  // what is this?
     private boolean shot;
 
     public Square(int x, int y, boolean occupied, Battleship shipRef, boolean shot) {
-        row = x;
-        column = y;
+        rows = x;
+        columns = y;
         this.occupied = occupied;
         this.shipRef = shipRef;
         this.shot = shot;
@@ -37,14 +37,6 @@ public class Square {
     public void setShot(boolean shot) {
         this.shot = shot;
     }
-
-//    public String toString() {
-//        return " row = ? " +
-//                ", column = ? ";}
-////                ", is there a ship there? " + occupied +
-////                ", was it shot? " + shot +
-////                '}';
-////    }
 
 }
 

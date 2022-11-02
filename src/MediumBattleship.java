@@ -1,13 +1,13 @@
 public class MediumBattleship extends Battleship {
     // specify the total number of permissible ships of that class on the board
-    private static int totalNum = 2;
+    private static int totalNumberOfMediumShips = 2;
 
-    public static int getTotalNum() {
-        return totalNum;
+    public static int getTotalNumberOfMediumShips() {
+        return totalNumberOfMediumShips;
     }
 
-    public static void setTotalNum(int totalNum) {
-        MediumBattleship.setTotalNum(totalNum);
+    public static void setTotalNumberOfMediumShips(int totalNumberOfMediumShips) {
+        MediumBattleship.setTotalNumberOfMediumShips(totalNumberOfMediumShips);
     }
 
     public MediumBattleship(boolean s) {

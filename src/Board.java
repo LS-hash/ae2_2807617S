@@ -3,16 +3,17 @@ import java.util.Random;
 public class Board {
     private static int rows = 10;
     private static int columns = 10;
-    private static int shipNums = LargeBattleship.getTotalNum()
-            + MediumBattleship.getTotalNum()
-            + SmallBattleship.getTotalNum(); // the number of ships
+    private static int totalNumberOfShips = LargeBattleship.getTotalNumberOfLargeShips()
+            + MediumBattleship.getTotalNumberOfMediumShips()
+            + SmallBattleship.getTotalNumberOfSmallShips(); // the number of ships
 
-    public int getShipNums() {
-        return shipNums;
+
+    public int getTotalNumberOfShips() {
+        return totalNumberOfShips;
     }
 
-    public void setShipNums(int shipNums) {
-        this.shipNums = shipNums;
+    public void setTotalNumberOfShips(int shipNums) {
+        this.totalNumberOfShips = shipNums;
     }
 
     public static Square[][] generateBoard() {
@@ -36,7 +37,7 @@ public class Board {
     }
 
     private static void generateBigShip(Square[][] board) {
-        for (int n = 0; n < LargeBattleship.getTotalNum(); n++) {
+        for (int n = 0; n < LargeBattleship.getTotalNumberOfLargeShips(); n++) {
             Battleship ship;
             while (true) {
                 // random generate location of ship
@@ -84,7 +85,7 @@ public class Board {
     }
 
     private static void generateMidShip(Square[][] board) {
-        for (int n = 0; n < MediumBattleship.getTotalNum(); n++) {
+        for (int n = 0; n < MediumBattleship.getTotalNumberOfMediumShips(); n++) {
             Battleship ship;
             while (true) {
                 // random generate location of ship
@@ -130,7 +131,7 @@ public class Board {
     }
 
     private static void generateSmallShip(Square[][] board) {
-        for (int n = 0; n < SmallBattleship.getTotalNum(); n++) {
+        for (int n = 0; n < SmallBattleship.getTotalNumberOfSmallShips(); n++) {
             Battleship ship;
             while (true) {
                 // random generate location of ship

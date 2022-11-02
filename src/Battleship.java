@@ -25,16 +25,6 @@ public class Battleship {
     public void setRemainingHealth(int remainHealth) {
         this.remainingHealth = remainHealth;
     }
-
-
-
-//    public String toString() {
-//        return "Has it sunk yet? " + ifSunk +
-//                ", remaining hits = " + remainingHealth ;
-//    }
-
-
-
 }
 
 
